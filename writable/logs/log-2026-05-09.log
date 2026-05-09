@@ -196,3 +196,61 @@ in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
 11 SYSTEMPATH/Boot.php(442): CodeIgniter\CLI\Console->run()
 12 SYSTEMPATH/Boot.php(166): CodeIgniter\Boot::runCommand()
 13 ROOTPATH/spark(87): CodeIgniter\Boot::bootSpark()
+DEBUG - 2026-05-09 18:04:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 18:04:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 18:04:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 18:04:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 18:05:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 18:05:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 18:06:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 18:06:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 18:06:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 18:06:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 18:06:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 18:06:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 18:06:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-05-09 18:09:00 --> Column count doesn't match value count at row 1
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1841): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Database/BaseBuilder.php(2230): CodeIgniter\Database\BaseBuilder->batchExecute()
+ 6 APPPATH/Database/Seeds/UserSeeder.php(87): CodeIgniter\Database\BaseBuilder->insertBatch()
+ 7 SYSTEMPATH/Database/Seeder.php(155): App\Database\Seeds\UserSeeder->run()
+ 8 SYSTEMPATH/Commands/Database/Seed.php(79): CodeIgniter\Database\Seeder->call()
+ 9 SYSTEMPATH/CLI/Commands.php(74): CodeIgniter\Commands\Database\Seed->run()
+10 SYSTEMPATH/CLI/Console.php(47): CodeIgniter\CLI\Commands->run()
+11 SYSTEMPATH/Boot.php(442): CodeIgniter\CLI\Console->run()
+12 SYSTEMPATH/Boot.php(166): CodeIgniter\Boot::runCommand()
+13 ROOTPATH/spark(87): CodeIgniter\Boot::bootSpark()
+ERROR - 2026-05-09 18:09:00 --> Cannot add or update a child row: a foreign key constraint fails (`regime`.`codes_portefeuille`, CONSTRAINT `codes_portefeuille_utilisateur_id_foreign` FOREIGN KEY (`utilisateur_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE SET NULL)
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1841): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Database/BaseBuilder.php(2230): CodeIgniter\Database\BaseBuilder->batchExecute()
+ 6 APPPATH/Database/Seeds/CodeSeeder.php(29): CodeIgniter\Database\BaseBuilder->insertBatch()
+ 7 SYSTEMPATH/Database/Seeder.php(155): App\Database\Seeds\CodeSeeder->run()
+ 8 SYSTEMPATH/Commands/Database/Seed.php(79): CodeIgniter\Database\Seeder->call()
+ 9 SYSTEMPATH/CLI/Commands.php(74): CodeIgniter\Commands\Database\Seed->run()
+10 SYSTEMPATH/CLI/Console.php(47): CodeIgniter\CLI\Commands->run()
+11 SYSTEMPATH/Boot.php(442): CodeIgniter\CLI\Console->run()
+12 SYSTEMPATH/Boot.php(166): CodeIgniter\Boot::runCommand()
+13 ROOTPATH/spark(87): CodeIgniter\Boot::bootSpark()
+ERROR - 2026-05-09 18:09:00 --> Cannot add or update a child row: a foreign key constraint fails (`regime`.`objectives`, CONSTRAINT `objectives_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE)
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1841): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Database/BaseBuilder.php(2230): CodeIgniter\Database\BaseBuilder->batchExecute()
+ 6 APPPATH/Database/Seeds/ObjectiveSeeder.php(19): CodeIgniter\Database\BaseBuilder->insertBatch()
+ 7 SYSTEMPATH/Database/Seeder.php(155): App\Database\Seeds\ObjectiveSeeder->run()
+ 8 SYSTEMPATH/Commands/Database/Seed.php(79): CodeIgniter\Database\Seeder->call()
+ 9 SYSTEMPATH/CLI/Commands.php(74): CodeIgniter\Commands\Database\Seed->run()
+10 SYSTEMPATH/CLI/Console.php(47): CodeIgniter\CLI\Commands->run()
+11 SYSTEMPATH/Boot.php(442): CodeIgniter\CLI\Console->run()
+12 SYSTEMPATH/Boot.php(166): CodeIgniter\Boot::runCommand()
+13 ROOTPATH/spark(87): CodeIgniter\Boot::bootSpark()

@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             'imc'                   => ['type' => 'DECIMAL', 'constraint' => [5, 2], 'null' => true],
             'password'              => ['type' => 'VARCHAR', 'constraint' => 255],
             'is_gold'               => ['type' => 'BOOLEAN', 'default' => false],
+            'is_admin'              => ['type' => 'BOOLEAN', 'default' => false],
             'gold_purchased_at'     => ['type' => 'DATETIME', 'null' => true],
             'wallet_balance'        => ['type' => 'DECIMAL', 'constraint' => [10, 2], 'default' => 0],
             'profile_completed'     => ['type' => 'BOOLEAN', 'default' => false],
