@@ -27,7 +27,6 @@ class CreateUsersTable extends Migration
         ]);
 
         $this->forge->addKey('id', false, true);
-        $this->forge->addKey('email');
         $this->forge->addKey('is_gold');
         $this->forge->createTable('users', true);
     }
