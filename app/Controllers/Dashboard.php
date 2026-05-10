@@ -7,6 +7,7 @@ use App\Models\RegimeModel;
 use App\Models\ActiviteSportiveModel;
 use App\Models\ObjectiveModel;
 use App\Models\CodeModel;
+use App\Models\UserRegimesModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class Dashboard extends BaseController
@@ -16,6 +17,7 @@ class Dashboard extends BaseController
     protected $activiteModel;
     protected $objectiveModel;
     protected $codeModel;
+    protected $userRegimesModel;
 
     public function __construct()
     {
@@ -24,6 +26,7 @@ class Dashboard extends BaseController
         $this->activiteModel = new ActiviteSportiveModel();
         $this->objectiveModel = new ObjectiveModel();
         $this->codeModel = new CodeModel();
+        $this->userRegimesModel = new UserRegimesModel();
     }
 
     /**
@@ -72,9 +75,6 @@ class Dashboard extends BaseController
         return $this->response->setJSON($recommendations);
     }
 
-    /**
-     * Subscribe to a regime
-     */
     public function subscribeRegime()
     {
         if (!session()->get('logged_in')) {
@@ -93,7 +93,6 @@ class Dashboard extends BaseController
         $user = $this->userModel->find($userId);
         $price = $this->regimeModel->calculatePrice($regimeId, $dureeJours);
 
-        // Apply 15% discount if user has gold
         if ($user['is_gold']) {
             $price = $price * 0.85;
         }
@@ -102,29 +101,23 @@ class Dashboard extends BaseController
             return redirect()->back()->with('error', 'Solde insuffisant dans le portefeuille.');
         }
 
-        // Deduct from wallet
         $this->userModel->update($userId, ['wallet_balance' => $user['wallet_balance'] - $price]);
 
-        // Create regime subscription
         $dateDebut = date('Y-m-d H:i:s');
         $dateFin = date('Y-m-d H:i:s', strtotime("+$dureeJours days"));
 
-        $this->db->table('user_regimes')->insert([
+        $this->userRegimesModel->insert([
             'user_id'    => $userId,
             'regime_id'  => $regimeId,
             'date_debut' => $dateDebut,
             'date_fin'   => $dateFin,
             'prix_paye'  => $price,
             'statut'     => 'actif',
-            'created_at' => date('Y-m-d H:i:s'),
         ]);
 
         return redirect()->to('/dashboard')->with('success', 'Régime ajouté avec succès!');
     }
 
-    /**
-     * Use wallet code
-     */
     public function useCode()
     {
         if (!session()->get('logged_in')) {
@@ -154,9 +147,6 @@ class Dashboard extends BaseController
         return redirect()->back()->with('success', 'Code appliqué! ' . $codeData['montant'] . '€ ajoutés au portefeuille.');
     }
 
-    /**
-     * Upgrade to gold
-     */
     public function upgradeGold()
     {
         if (!session()->get('logged_in')) {
@@ -170,28 +160,24 @@ class Dashboard extends BaseController
             return redirect()->back()->with('info', 'Vous êtes déjà premium!');
         }
 
-        $goldPrice = 29.99; // Price for gold subscription
+        $goldPrice = 29.99; 
 
         if ($user['wallet_balance'] < $goldPrice) {
             return redirect()->back()->with('error', 'Solde insuffisant. Veuillez ajouter des fonds.');
         }
 
-        // Purchase gold
         $this->userModel->update($userId, [
             'is_gold'           => 1,
             'gold_purchased_at' => date('Y-m-d H:i:s'),
             'wallet_balance'    => $user['wallet_balance'] - $goldPrice,
         ]);
 
-        // Update session
+
         session()->set('is_gold', 1);
 
         return redirect()->to('/dashboard')->with('success', 'Vous êtes maintenant premium! Bénéficiez de 15% de réduction sur tous les régimes.');
     }
 
-    /**
-     * View active regimes
-     */
     public function activeRegimes()
     {
         if (!session()->get('logged_in')) {
@@ -208,9 +194,7 @@ class Dashboard extends BaseController
         return view('dashboard/active_regimes', $data);
     }
 
-    /**
-     * Cancel a regime
-     */
+
     public function cancelRegime()
     {
         if (!session()->get('logged_in')) {
